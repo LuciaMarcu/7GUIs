@@ -13,29 +13,35 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Counter
+namespace TempConv
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public int count = 0;
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Celsius_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            count++;
-            TextBox.Text = count.ToString();
+           if (double.TryParse(Celsius.Text, out double tempC))
+            {
+                var tempF = Math.Round(tempC * (9 / 5.0) + 32);
+                Fahrenheit.Text = tempF.ToString();
+            }
         }
 
-        private void Subtract(object sender, RoutedEventArgs e)
+        private void Fahrenheit_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            count--;
-            TextBox.Text = count.ToString();
+            double tempF = 0;
+            if (double.TryParse(Fahrenheit.Text, out tempF))
+            {
+                var tempC = Math.Round((tempF - 32) * (5 / 9.0));
+                Celsius.Text = tempC.ToString();
+            }
         }
     }
 }

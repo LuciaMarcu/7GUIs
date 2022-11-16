@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Counter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        Title="MainWindow" Height="210" Width="561">
+    <Grid Margin="0,0,-4,0">
+        <Button Content="Add" HorizontalAlignment="Left" Margin="221,0,0,0" VerticalAlignment="Center" Height="38" RenderTransformOrigin="0.5,0.5" Width="142" Click="Button_Click" FontSize="20" FontWeight="Bold" Background="#FFF8F2F2"></Button>
+        <Label x:Name="Label" HorizontalAlignment="Center" Margin="0,2,0,0" VerticalAlignment="Top" Height="37" Width="558" Content="       Counter" Background="#FFF4EEEE" FontSize="20" FontWeight="Bold"/>
+        <TextBox Name="TextBox" HorizontalAlignment="Left" Margin="29,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="135" FontSize="20" FontWeight="Bold" Height="37"/>
+        <Button Content="Subtract" HorizontalAlignment="Left" Margin="394,77,0,0" VerticalAlignment="Top" Height="38" RenderTransformOrigin="0.5,0.5" Width="142" Click="Subtract" FontSize="20" FontWeight="Bold" Background="#FFF8F2F2"/>
+        
     </Grid>
 </Window>
