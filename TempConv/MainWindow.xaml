@@ -8,7 +8,14 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Label Content="TempConv" HorizontalAlignment="Center" Margin="0,2,0,0" VerticalAlignment="Top" Height="37" Width="796" FontSize="20" FontWeight="Bold"/>
-        <TextBox Name="Celsius" HorizontalAlignment="Left" Margin="37,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" Height="35" KeyUp="Celsius_KeyUp"/>
+        <TextBox 
+            Name="Celsius" 
+            HorizontalAlignment="Left" 
+            Margin="37,132,0,0" 
+            TextWrapping="Wrap" 
+            VerticalAlignment="Top" 
+            Width="161" Height="35" 
+            KeyUp="Celsius_KeyUp"/>
         <TextBox Name="Fahrenheit"  HorizontalAlignment="Left" Margin="343,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="38" KeyUp="Fahrenheit_KeyUp"/>
         <Label Content="Celsius =" HorizontalAlignment="Left" Margin="222,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.502,-0.195" Width="110" Height="37" FontSize="20" FontWeight="Bold"/>
         <Label Content="Fahrenheit" HorizontalAlignment="Left" Margin="602,132,0,0" VerticalAlignment="Top" Height="39" Width="166" FontSize="20" FontWeight="Bold"/>
