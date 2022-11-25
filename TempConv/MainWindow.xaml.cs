@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,46 +20,35 @@ namespace TempConv
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private double celsiusTemperature;
+        private double fahrenheitTemperature;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Celsius_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        public double CelsiusTemperature
         {
-           if (double.TryParse(Celsius.Text, out double tempC))
-           {
-                var tempF = Math.Round(tempC * (9 / 5.0) + 32);
-                Fahrenheit.Text = tempF.ToString();
-           }
-           else
-           {
-               if (Celsius.Text != string.Empty)
-               {
-                   ShowError();
-               }
-
-               Fahrenheit.Text = String.Empty;
-           }
+            get => this.celsiusTemperature;
+            set
+            {
+                this.celsiusTemperature = value;
+                this.fahrenheitTemperature = Math.Round(this.celsiusTemperature * (9 / 5.0) + 32);
+                OnPropertyChanged(nameof(this.FahrenheitTemperature));
+            }
         }
 
-        private void Fahrenheit_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        public double FahrenheitTemperature
         {
-            if (double.TryParse(Fahrenheit.Text, out double tempF))
+            get => this.fahrenheitTemperature;
+            set
             {
-                var tempC = Math.Round((tempF - 32) * (5 / 9.0));
-                Celsius.Text = tempC.ToString();
-            }
-            else
-            {
-                if (Fahrenheit.Text != String.Empty)
-                {
-                    ShowError();
-                }
-
-                Celsius.Text = String.Empty;
+                this.fahrenheitTemperature = value;
+                this.celsiusTemperature = Math.Round((this.fahrenheitTemperature - 32) * (5 / 9.0));
+                OnPropertyChanged(nameof(this.CelsiusTemperature));
             }
         }
 
@@ -67,6 +58,13 @@ namespace TempConv
             MessageBoxButton button = MessageBoxButton.OK;
             var caption = "Validation error.";
             MessageBox.Show(message, caption, button, MessageBoxImage.Error);
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
